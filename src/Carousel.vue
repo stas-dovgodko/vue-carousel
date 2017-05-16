@@ -172,6 +172,14 @@
         type: Number,
         default: 500,
       },
+      /**
+       * Infinite Loop enable
+       * @type Boolean
+       */
+      infiniteLoop: {
+        type: Boolean,
+        default: false
+      }
     },
     computed: {
       /**
@@ -285,9 +293,12 @@
           this.goToPage(this.currentPage - 1)
         } else if (
           (!direction || (direction && direction !== "backward"))
-          && this.canAdvanceForward
         ) {
-          this.goToPage(this.currentPage + 1)
+          if (! this.canAdvanceForward && this.infiniteLoop) {
+            this.goToPage(0)
+          } else if (this.canAdvanceForward) {
+            this.goToPage(this.currentPage + 1)
+          }
         }
       },
       /**

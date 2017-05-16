@@ -63,6 +63,10 @@ play("Carousel", module)
       h, containerWidth, [h(Carousel, { props: { perPageCustom: [[480, 3], [768, 4]] } }, generateSlideImages(h))]
     )
   )
+  .add("infiniteLoop", h => createContainer(
+      h, containerWidth, [h(Carousel, { props: { infiniteLoop: true } }, generateSlideImages(h))]
+    )
+  )
   .add("autoplay", h => createContainer(
       h, containerWidth, [h(Carousel, { props: { autoplay: true } }, generateSlideImages(h))]
     )
